@@ -1,0 +1,19 @@
+version: "3"
+
+
+services:
+  nfs:
+    container_name: nfs-service
+    image: itsthenetwork/nfs-server-alpine:latest
+    network_mode: "bridge"
+    ports:
+      - "2049:2049/tcp"
+    environment:
+      - TZ='America/Chicago'
+      - SHARED_DIRECTORY='/nfsshare'
+    volumes:
+      - '/datastore/media:/nfsshare'
+    cap_add:
+      - SYS_ADMIN
+      - SETCAP
+    restart: unless-stopped
