@@ -6,14 +6,18 @@ services:
     container_name: nfs-service
     image: itsthenetwork/nfs-server-alpine:latest
     network_mode: "bridge"
+    privileged: true
     ports:
       - "2049:2049/tcp"
+    #  - "111:111/tcp"
+    #  - "111:111/udp"
     environment:
       - TZ='America/Chicago'
-      - SHARED_DIRECTORY='/nfsshare'
+      - SHARED_DIRECTORY=/nfsshare
     volumes:
-      - '/datastore/media:/nfsshare'
+      - /big/share:/nfsshare
+      - /home/lkaut/compose/nfs-server/exports:/etc/exports
     cap_add:
       - SYS_ADMIN
-      - SETCAP
+    #  - SETPCAP
     restart: unless-stopped
