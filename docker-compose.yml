@@ -16,7 +16,7 @@ services:
       - SHARED_DIRECTORY=/nfsshare
     volumes:
       - /big/share:/nfsshare
-      - /home/lkaut/compose/nfs-server/exports:/etc/exports
+      - /home/lkaut/iac/compose/nfs-server/exports:/etc/exports
     cap_add:
       - SYS_ADMIN
     #  - SETPCAP
